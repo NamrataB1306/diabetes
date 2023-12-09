@@ -4,20 +4,6 @@ import pickle
 import streamlit as st
 import os
 
-# Get the current working directory
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Load the model using a relative path
-model_path = os.path.join(current_dir, "trained_model.sav")
-
-# Check if the file exists
-if os.path.exists(model_path):
-    with open(model_path, 'rb') as file:
-        loaded_model = pickle.load(file)
-else:
-    st.error("Model file not found!")
-
-
 # loading the saved model
 loaded_model = pickle.load(open("trained_model.sav", 'rb'))
 
