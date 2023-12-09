@@ -2,14 +2,24 @@
 import numpy as np
 import pickle
 import streamlit as st
-from joblib import load
+import os
 
-# loading the saved model using joblib
-loaded_model = load("trained_model.joblib")
+# Get the current working directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Load the model using a relative path
+model_path = os.path.join(current_dir, "trained_model.sav")
+
+# Check if the file exists
+if os.path.exists(model_path):
+    with open(model_path, 'rb') as file:
+        loaded_model = pickle.load(file)
+else:
+    st.error("Model file not found!")
 
 
 # loading the saved model
-#loaded_model = pickle.load(open("trained_model.sav", 'rb'))
+loaded_model = pickle.load(open("trained_model.sav", 'rb'))
 
 
 # creating a function for Prediction
